@@ -1,2 +1,2 @@
 # muggle.zoo
-muggle.zoo
+Muggle Zoo

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muggle Zoo｜麻瓜婆婆動物園</title>
+<meta name="description" content="麻瓜婆婆不裝專家，願意學<br>
+把看起來很難的市場、工具與自動化<br>
+拆給想懂的你，也能懂的小小塊<br>
+每週一支影片、三個觀點、一個結論">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --night:#050d1a;--night-card:#0d1a2e;
+  --gold:#f5c842;--gold-dim:#c9a235;--gold-glow:rgba(245,200,66,.15);
+  --cream:#f8f7f2;
+  --text-light:#e8dcc8;--text-dim:#a09480;--text-dark:#2a2520;
+  --border-dark:#1a2a45;--border-cream:#d8d0c0;
+  --r:16px;--rs:10px;
+}
+body{
+  font-family:'Noto Sans TC',sans-serif;
+  background:var(--night);color:var(--text-light);
+  line-height:1.8;overflow-x:hidden;
+}
+
+/* NAV */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 28px;
+  background:rgba(5,13,26,.88);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(26,42,69,.5);
+}
+.nav-logo img{width:110px;height:auto;display:block}
+.nav-links{display:flex;gap:20px}
+.nav-links a{
+  color:var(--text-dim);text-decoration:none;font-size:.85rem;
+  font-weight:500;transition:color .2s;
+}
+.nav-links a:hover{color:var(--gold)}
+
+/* HERO — 星空背景，下方漸層到奶油 */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;
+  padding:100px 48px 80px;
+  background:url("sky.png") center/cover no-repeat,var(--night);
+  overflow:hidden;
+}
+.hero-inner{
+  max-width:1100px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;
+  align-items:center;position:relative;z-index:1;
+}
+.hero-text{display:flex;flex-direction:column;gap:18px}
+.hero-logo-img{width:340px;max-width:100%;height:auto;display:block;margin-bottom:12px}
+.hero-tagline{
+  font-family:'Noto Serif TC',serif;
+  font-size:clamp(1.05rem,2.2vw,1.35rem);
+  color:var(--text-light);font-weight:400;line-height:2;
+}
+.hero-tagline em{
+  font-style:normal;color:var(--gold);
+  text-decoration:underline;text-decoration-color:var(--gold-glow);
+  text-underline-offset:4px;
+}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 26px;border-radius:var(--rs);
+  font-family:'Noto Sans TC',sans-serif;
+  font-size:.9rem;font-weight:600;
+  text-decoration:none;transition:all .25s;cursor:pointer;border:none;
+}
+.btn-gold{background:var(--gold);color:var(--night)}
+.btn-gold:hover{background:#ffe066;transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,200,66,.3)}
+.btn-outline{background:transparent;color:var(--gold);border:1.5px solid var(--gold-dim)}
+.btn-outline:hover{background:var(--gold-glow);transform:translateY(-2px)}
+
+.hero-visual{display:flex;justify-content:center}
+.hero-kv{width:100%;max-width:420px}
+
+/* SECTIONS */
+.sec-cream{background:var(--cream);color:var(--text-dark);padding:72px 48px}
+.sec-starry{
+  background:url("sky.png") center/cover no-repeat,var(--night);
+  color:var(--text-light);padding:72px 48px;
+}
+
+.inner{max-width:1000px;margin:0 auto}
+.s-label{font-size:.75rem;color:var(--gold-dim);letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px;font-weight:500}
+.s-title{font-family:'Noto Serif TC',serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:900;margin-bottom:12px}
+.s-desc{font-size:.92rem;max-width:560px;margin-bottom:36px;line-height:1.8}
+
+/* LATEST EPISODE — 奶油底 */
+.ep-grid{display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:start}
+.ep-meta{display:flex;flex-direction:column;gap:16px}
+.ep-meta p{font-size:.95rem;line-height:1.9;color:#4a4030}
+.ep-embed{
+  width:100%;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;
+  border:1px solid var(--border-cream);box-shadow:0 4px 20px rgba(0,0,0,.08);
+}
+.ep-embed iframe{width:100%;height:100%;border:none}
+
+/* CONTENT PILLARS — 外層奶油，內層星空 */
+.pillars-block{
+  background:url("sky.png") center/cover no-repeat,var(--night);
+  border:1px solid var(--border-dark);
+  border-radius:24px;padding:44px 36px;
+  transition:border-color .3s;
+}
+.pillars-block:hover{border-color:var(--gold)}
+.pillars-head p{color:var(--text-dim);font-size:.92rem;max-width:400px;line-height:1.8}
+.p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px}
+.p-card{
+  background:rgba(5,13,26,.5);
+  border:1px solid var(--border-dark);
+  border-radius:var(--r);padding:24px 20px;
+  transition:transform .3s,border-color .3s;
+}
+.p-card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.p-card img{width:56px;height:56px;margin-bottom:14px;border-radius:12px}
+.p-card h3{
+  font-family:'Noto Serif TC',serif;
+  font-size:1.05rem;font-weight:700;color:var(--text-light);margin-bottom:8px;
+}
+.p-card p{font-size:.84rem;color:var(--text-dim);line-height:1.7}
+
+/* NEWSLETTER — 外層奶油，內層星空 */
+.nl-box{
+  max-width:580px;margin:0 auto;text-align:center;
+  background:url("sky.png") center/cover no-repeat,var(--night);
+  border:1px solid var(--border-dark);
+  border-radius:24px;padding:44px 32px;
+  position:relative;overflow:hidden;
+  transition:border-color .3s;
+}
+.nl-box:hover{border-color:var(--gold)}
+.nl-box::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(5,13,26,.55);pointer-events:none;
+}
+.nl-box>*{position:relative;z-index:1}
+.nl-box h2{
+  font-family:'Noto Serif TC',serif;
+  font-size:1.3rem;font-weight:700;color:var(--cream);margin-bottom:10px;
+}
+.nl-box p{font-size:.9rem;color:var(--text-dim);margin-bottom:24px;line-height:1.8}
+.nl-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.nl-input{
+  flex:1;min-width:200px;padding:13px 18px;
+  border-radius:var(--rs);border:1px solid var(--border-dark);
+  background:rgba(5,13,26,.8);color:var(--text-light);
+  font-family:'Noto Sans TC',sans-serif;font-size:.9rem;outline:none;
+  transition:border-color .2s;
+}
+.nl-input::placeholder{color:var(--text-dim)}
+.nl-input:focus{border-color:var(--gold-dim)}
+
+/* ABOUT — 外層星空，內層奶油 */
+.about-wrap{max-width:640px;margin:0 auto;text-align:center}
+.about-card{
+  background:var(--cream);border-radius:24px;
+  padding:44px 32px;color:var(--text-dark);
+  border:1px solid transparent;transition:border-color .3s;
+}
+.about-card:hover{border-color:var(--gold)}
+.about-card h2{
+  font-family:'Noto Serif TC',serif;
+  font-size:1.4rem;font-weight:900;color:var(--text-dark);margin-bottom:4px;
+}
+.about-card .sub{font-size:.8rem;color:#8a7d6d;margin-bottom:20px;font-style:italic}
+.about-card p{font-size:.9rem;color:#5a5040;line-height:1.9}
+.about-btns{
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+  margin-top:36px;
+}
+.about-btn{
+  padding:12px 28px;
+  background:var(--gold);color:var(--night);
+  border:2px solid var(--gold);
+  border-radius:var(--rs);
+  text-decoration:none;font-size:.88rem;font-weight:700;
+  transition:all .25s;
+}
+.about-btn:hover{background:#ffe066;transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,200,66,.3)}
+
+/* FOOTER */
+footer{
+  text-align:center;padding:32px 24px;
+  border-top:1px solid var(--border-dark);
+  font-size:.75rem;color:var(--text-dim);
+}
+footer a{color:var(--gold-dim);text-decoration:none}
+footer a:hover{color:var(--gold)}
+.f-links{display:flex;gap:24px;justify-content:center;margin-bottom:10px}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  .hero{padding:100px 24px 60px}
+  .hero-inner{grid-template-columns:1fr;text-align:center}
+  .hero-text{align-items:center}
+  .hero-cta{justify-content:center}
+  .hero-visual{order:-1}
+  .hero-kv{max-width:320px}
+  .sec-cream,.sec-starry{padding:48px 20px}
+  .ep-grid{grid-template-columns:1fr}
+  .pillars-block{padding:28px 18px}
+  .p-grid{grid-template-columns:1fr}
+  .nl-box{padding:32px 18px}
+  .about-card{padding:32px 18px}
+  .nav{padding:12px 16px}
+  .nav-links{gap:14px}
+  .nav-links a{font-size:.78rem}
+}
+@media(max-width:480px){
+  .hero-logo-img{width:220px}
+  .hero-kv{max-width:280px}
+  .nav-logo img{width:82px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo"><img src="logo-mugglezoo.png" alt="Muggle Zoo"></a>
+  <div class="nav-links">
+    <a href="#latest">影片</a>
+    <a href="#pillars">定位</a>
+    <a href="#subscribe">訂閱</a>
+    <a href="https://mismkt.com/zh/home/" target="_blank">Mi's Marketing</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <img class="hero-logo-img" src="logo-chinese.png" alt="麻瓜婆婆動物園">
+      <p class="hero-tagline">
+        麻瓜婆婆不裝專家，願意學<br>
+        把看起來很難的市場、工具與自動化<br>
+        拆給<em>想懂的你，也能懂</em>的小小塊
+      </p>
+      <div class="hero-cta">
+        <a href="https://youtube.com/@muggle-zoo" target="_blank" class="btn btn-gold">▶ 看最新影片</a>
+        <a href="https://mis23ms.github.io/twstock-dashboard/" target="_blank" class="btn btn-outline">看小工具</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img class="hero-kv" src="headkv.png" alt="麻瓜婆婆和AI獸們">
+    </div>
+  </div>
+</section>
+
+<!-- LATEST EPISODE -->
+<section class="sec-cream" id="latest">
+  <div class="inner">
+    <p class="s-label">Latest Episode</p>
+    <h2 class="s-title">本週內容</h2>
+    <div class="ep-grid">
+      <div class="ep-meta">
+        <p>每週<br><strong>一支影片</strong><br><strong>三個觀點</strong><br><strong>一個結論</strong></p>
+        <a href="https://youtube.com/@muggle-zoo" target="_blank" class="btn btn-gold" style="align-self:flex-start">▶ 看最新影片</a>
+      </div>
+      <div class="ep-embed">
+        <!-- ★ 替換: 把 VIDEO_ID 換成你的 YouTube 影片 ID -->
+        <iframe src="https://www.youtube.com/embed/j8uMQIU0Icg" title="Muggle Zoo" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT PILLARS -->
+<section class="sec-cream" id="pillars" style="padding-top:0">
+  <div class="inner">
+    <div class="pillars-block">
+      <div class="pillars-head">
+        <p class="s-label" style="color:var(--gold-dim)">Content Pillars</p>
+        <h2 class="s-title" style="color:var(--cream)">動物園裡有什麼</h2>
+        <p>不綁死在單一題材。<br>複雜的東西，拆小講。</p>
+      </div>
+      <div class="p-grid">
+        <div class="p-card">
+          <img src="icon-market.png" alt="">
+          <h3>更簡單看懂市場</h3>
+          <p>從一週素材裡挑出最值得看的三個觀點，用白話方式整理矛盾、情緒與訊號，不走明牌口吻。</p>
+        </div>
+        <div class="p-card">
+          <img src="icon-auto.png" alt="">
+          <h3>不用寫程式，也能自動化</h3>
+          <p>把 AI、自動化、workflow 這些看起來很難的東西拆小，讓非專家的我們知道原來自己也能用。</p>
+        </div>
+        <div class="p-card">
+          <img src="icon-tool.png" alt="">
+          <h3>工具箱給想懂的你</h3>
+          <p>不是炫技，是幫理解。偶爾放一個小模擬器或小工具，讓概念更直覺，加快理解速度。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <!-- NEWSLETTER -->
+      <section class="sec-cream" id="subscribe" style="padding-top:48px">
+        <div class="inner">
+          <div class="nl-box">
+            <h2>
+              <img src="icon-newsletter.png" alt="newsletter icon" style="width:30px;height:30px;vertical-align:middle;margin-right:8px;">
+              給想懂的你:<br>
+              本週三件事
+            </h2>
+            <p>
+              不看影片也沒關係。<br>
+              每週一封短短的文字版整理：<br>
+              三個重點，一句結論，偶爾再加一個小工具。
+            </p>
+            <!-- ★ 替換: 串 Beehiiv / Substack 表單 -->
+            <div class="nl-form">
+              <input type="email" class="nl-input" placeholder="你的 email" aria-label="Email">
+              <button class="btn btn-gold" onclick="alert('電子報即將開通，敬請期待！')">訂閱</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<!-- ABOUT -->
+<section class="sec-starry" style="padding-top:48px">
+  <div class="inner">
+    <div class="about-wrap">
+      <div class="about-card">
+        <h2>About</h2>
+        <p class="sub">Content IP under Mi's Marketing</p>
+        <p>
+          Muggle Zoo 是內容品牌<br>
+          背後是 Mi'sMarketing 米思行思<br>
+          【一個專注品牌行銷、AI 自動化與內容策略的顧問】<br>
+          想知道怎麼用 AI 做出這些工具？歡迎逛逛
+        </p>
+      </div>
+      <div class="about-btns">
+        <a href="https://mismkt.com/zh/portfolio-mis-marketing-zh/" target="_blank" class="about-btn">作品集</a>
+        <a href="https://mismkt.com/zh/ai-automation-zh/" target="_blank" class="about-btn">AI 自動化</a>
+        <a href="https://mismkt.com/zh/about-mis-marketing-zh/" target="_blank" class="about-btn">About</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-links">
+    <a href="https://youtube.com/@muggle-zoo" target="_blank">YouTube</a>
+    <a href="https://www.threads.net/@muggle.zoo" target="_blank">Threads</a>
+    <a href="https://mismkt.com/zh/home/" target="_blank">Mi's Marketing</a>
+  </div>
+  <p>Muggle Zoo｜麻瓜婆婆動物園 — Content IP under <a href="https://mismkt.com/zh/home/" target="_blank">Mi's Marketing</a></p>
+</footer>
+
+</body>
+</html>
